@@ -1,7 +1,9 @@
 body {
   font-family: sans-serif;
   line-height: 1.5;
+  padding: 10px 10px;
 }
+
 
 h1,
 h2,
@@ -17,9 +19,14 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 img {
   display: block;
   max-width: 100%;
+}
+
+.wrapper {
+  margin-bottom: 12px;
 }
