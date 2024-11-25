@@ -20,7 +20,7 @@ function App() {
     if (savedFeedback !== null) {
       return JSON.parse(savedFeedback);
     }
-    initFeedback;
+    return initFeedback;
   });
 
   // Функція для обробки відгуків
@@ -36,6 +36,7 @@ function App() {
   };
 
   const { good, neutral, bad } = feedback;
+
   const totalFeedback = good + neutral + bad;
   // Процент позитивних відгуків
   const positiveFeedback = Math.round((good / totalFeedback) * 100);
