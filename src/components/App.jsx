@@ -1,6 +1,6 @@
 import 'modern-normalize';
 import '../index.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Description from './Description/Description';
 import Options from './Options/Options';
@@ -15,7 +15,13 @@ function App() {
     bad: 0,
   };
   // Стан для відгуків
-  const [feedback, setFeedback] = useState(initFeedback);
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = window.localStorage.getItem('feedback');
+    if (savedFeedback !== null) {
+      return JSON.parse(savedFeedback);
+    }
+    initFeedback;
+  });
 
   // Функція для обробки відгуків
   const updateFeedback = feedbackType => {
@@ -31,7 +37,13 @@ function App() {
 
   const { good, neutral, bad } = feedback;
   const totalFeedback = good + neutral + bad;
+  // Процент позитивних відгуків
   const positiveFeedback = Math.round((good / totalFeedback) * 100);
+
+  // Записуємо відгуки в локальну пам'ять
+  useEffect(() => {
+    window.localStorage.setItem('feedback', JSON.stringify(feedback));
+  }, [feedback]);
 
   return (
     <>
